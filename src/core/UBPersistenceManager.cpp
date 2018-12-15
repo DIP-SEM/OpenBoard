@@ -676,7 +676,7 @@ void UBPersistenceManager::deleteDocumentScenes(UBDocumentProxy* proxy, const QL
 
     }
 
-    qSort(compactedIndexes);
+    std::sort(compactedIndexes.begin(), compactedIndexes.end());
 
     int offset = 1;
 

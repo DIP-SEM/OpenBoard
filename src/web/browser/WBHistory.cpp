@@ -137,7 +137,7 @@ void WBHistoryManager::setHistory(const QList<WBHistoryItem> &history, bool load
 
     // verify that it is sorted by date
     if (!loadedAndSorted)
-        qSort(m_history.begin(), m_history.end());
+        std::sort(m_history.begin(), m_history.end());
 
     checkForExpired();
 
@@ -311,7 +311,7 @@ void WBHistoryManager::load()
         lastInsertedItem = item;
     }
     if (needToSort)
-        qSort(list.begin(), list.end());
+        std::sort(list.begin(), list.end());
 
     setHistory(list, true);
 
@@ -1237,7 +1237,7 @@ QModelIndex WBHistoryTreeModel::mapFromSource(const QModelIndex &sourceIndex) co
         rowCount(QModelIndex());
 
     QList<int>::iterator it;
-    it = qLowerBound(m_sourceRowCache.begin(), m_sourceRowCache.end(), sourceIndex.row());
+    it = std::lower_bound(m_sourceRowCache.begin(), m_sourceRowCache.end(), sourceIndex.row());
     if (*it != sourceIndex.row())
         --it;
     int dateRow = qMax(0, it - m_sourceRowCache.begin());
@@ -1254,7 +1254,7 @@ void WBHistoryTreeModel::sourceRowsRemoved(const QModelIndex &parent, int start,
     for (int i = end; i >= start;)
     {
         QList<int>::iterator it;
-        it = qLowerBound(m_sourceRowCache.begin(), m_sourceRowCache.end(), i);
+        it = std::lower_bound(m_sourceRowCache.begin(), m_sourceRowCache.end(), i);
         // playing it safe
         if (it == m_sourceRowCache.end())
         {
