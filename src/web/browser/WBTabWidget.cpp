@@ -723,7 +723,7 @@ QByteArray WBTabWidget::saveState() const
         {
             tabs.append(tab->url().toString());
         } else {
-            tabs.append(QString::null);
+            tabs.append(QString());
         }
     }
     stream << tabs;

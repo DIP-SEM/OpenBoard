@@ -376,7 +376,7 @@ QPixmap UBWebController::getScreenPixmap()
     QDesktopWidget *desktop = QApplication::desktop();
     // we capture the screen in which the mouse is.
     const QRect primaryScreenRect = desktop->screenGeometry(QCursor::pos());
-    QCoreApplication::flush ();
+    QCoreApplication::processEvents();
 
     return QPixmap::grabWindow(desktop->winId(),
                                primaryScreenRect.x(), primaryScreenRect.y(),

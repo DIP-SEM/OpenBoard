@@ -1709,7 +1709,7 @@ bool UBBoardView::isAbsurdPoint(QPoint point)
     QDesktopWidget *desktop = qApp->desktop ();
     bool isValidPoint = false;
 
-    for (int i = 0; i < desktop->numScreens (); i++)
+    for (int i = 0; i < desktop->screenCount (); i++)
     {
         QRect screenRect = desktop->screenGeometry (i);
         isValidPoint = isValidPoint || screenRect.contains (mapToGlobal(point));
