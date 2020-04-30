@@ -41,7 +41,7 @@
 #include "core/UBSettings.h"
 
 #include "core/memcheck.h"
-QColor UBGraphicsTextItem::lastUsedTextColor;
+QColor UBGraphicsTextItem::lastUsedTextColor = QColor(Qt::black);
 
 UBGraphicsTextItem::UBGraphicsTextItem(QGraphicsItem * parent)
     : QGraphicsTextItem(parent)
@@ -79,6 +79,13 @@ UBGraphicsTextItem::UBGraphicsTextItem(QGraphicsItem * parent)
 
 UBGraphicsTextItem::~UBGraphicsTextItem()
 {
+}
+
+void UBGraphicsTextItem::recolor()
+{
+    UBGraphicsTextItemDelegate * del = dynamic_cast<UBGraphicsTextItemDelegate*>(Delegate());
+    if (del)
+        del->recolor();
 }
 
 void UBGraphicsTextItem::setSelected(bool selected)
@@ -239,9 +246,6 @@ void UBGraphicsTextItem::keyReleaseEvent(QKeyEvent *event)
 
 void UBGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QColor color = UBSettings::settings()->isDarkBackground() ? mColorOnDarkBackground : mColorOnLightBackground;
-    setDefaultTextColor(color);
-
     // Never draw the rubber band, we draw our custom selection with the DelegateFrame
     QStyleOptionGraphicsItem styleOption = QStyleOptionGraphicsItem(*option);
     styleOption.state &= ~QStyle::State_Selected;
@@ -249,13 +253,15 @@ void UBGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
     QGraphicsTextItem::paint(painter, &styleOption, widget);
 
-    if (widget == UBApplication::boardController->controlView()->viewport() &&
-            !isSelected() && toPlainText().isEmpty())
+    if (widget == UBApplication::boardController->controlView()->viewport() && !isSelected())
     {
-        painter->setFont(font());
-        painter->setPen(UBSettings::paletteColor);
-        painter->drawText(boundingRect(), Qt::AlignCenter, mTypeTextHereLabel);
         setTextInteractionFlags(Qt::NoTextInteraction);
+        if (toPlainText().isEmpty())
+        {
+            painter->setFont(font());
+            painter->setPen(UBSettings::paletteColor);
+            painter->drawText(boundingRect(), Qt::AlignCenter, mTypeTextHereLabel);
+        }
     }
 
     Delegate()->postpaint(painter, option, widget);

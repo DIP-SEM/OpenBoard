@@ -753,7 +753,7 @@
     </message>
     <message>
         <source>Check Update</source>
-        <translation>Cerca aggiornamenti</translation>
+        <translation>Controlla aggiornamenti</translation>
     </message>
     <message>
         <source>Ctrl+H</source>
@@ -801,11 +801,11 @@
     </message>
     <message>
         <source>Ruled Light Background</source>
-        <translation>Sfondo chiaro lineato</translation>
+        <translation>Sfondo chiaro a righe</translation>
     </message>
     <message>
         <source>Ruled Dark Background</source>
-        <translation>Sfundo scuro lineato</translation>
+        <translation>Sfondo scuro a righe</translation>
     </message>
     <message>
         <source>Reset grid size</source>
@@ -1279,8 +1279,8 @@
 Keeping this name will replace the document.
 Providing a new name will create a new document.</source>
         <translation>Il nome %1 è già usato.
-Conservando questo nome sostituirà il documento.
-Dando un nuovo nome creerà un nuovo documento.</translation>
+Conservando questo nome si sostituirà il documento.
+Dando un nuovo nome si creerà un nuovo documento.</translation>
     </message>
 </context>
 <context>
@@ -1317,6 +1317,10 @@ Dando un nuovo nome creerà un nuovo documento.</translation>
     <message>
         <source>Are you sure you want to remove the selected item(s) ?</source>
         <translation>Sei sicuro di voler cancellare l&apos;(gli) item selezionato(i)?</translation>
+    </message>
+    <message>
+        <source>Copying page %1/%2</source>
+        <translation>Sto copiando pagina %1/%2</translation>
     </message>
 </context>
 <context>
@@ -1966,7 +1970,7 @@ Vuoi ignorare gli errori per questo host?</translation>
     </message>
     <message>
         <source>has lost access to the document repository &apos;%1&apos;. Unfortunately the application must shut down to avoid data corruption. Latest changes may be lost as well.</source>
-        <translation type="vanished">ha perso l&apos;accesso al repository documenti &quot;%1&quot;. Sfortunatamente l&apos;applicazione deve essere chiusa per evitare di rivinare i dati. Gli ultimi cambiamenti potrebbero andare persi.</translation>
+        <translation type="vanished">ha perso l&apos;accesso al repository documenti &quot;%1&quot;. Sfortunatamente l&apos;applicazione deve essere chiusa per evitare di rovinare i dati. Gli ultimi cambiamenti potrebbero andare persi.</translation>
     </message>
     <message>
         <source>Saving thumbnail of page %1</source>
@@ -1978,7 +1982,7 @@ Vuoi ignorare gli errori per questo host?</translation>
     </message>
     <message>
         <source>OpenBoard has lost access to the document repository &apos;%1&apos;. Unfortunately the application must shut down to avoid data corruption. Latest changes may be lost as well.</source>
-        <translation>OpenBoard ha perso l&apos;accesso al repository documenti &quot;%1&quot;. Sfortunatamente l&apos;applicazione deve essere chiusa per evitare di rivinare i dati. Gli ultimi cambiamenti potrebbero andare persi.</translation>
+        <translation>OpenBoard ha perso l&apos;accesso al repository documenti &quot;%1&quot;. Sfortunatamente l&apos;applicazione deve essere chiusa per evitare di rovinare i dati. Gli ultimi cambiamenti potrebbero andare persi.</translation>
     </message>
 </context>
 <context>
@@ -2001,7 +2005,7 @@ Vuoi ignorare gli errori per questo host?</translation>
     </message>
     <message>
         <source>Swiss French</source>
-        <translation>Franco Svizzero</translation>
+        <translation>Francese Svizzero</translation>
     </message>
 </context>
 <context>
@@ -2880,6 +2884,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Swap first and second view displays</source>
         <translation>Scambia lo schermo di controllo con quello di visualizzazione</translation>
+    </message>
+    <message>
+        <source>Documents Mode</source>
+        <translation>Modalità Documenti</translation>
+    </message>
+    <message>
+        <source>Display date column on alphabetical sort</source>
+        <translation>Visualizza la colonna delle date con ordinamento alfabetico.</translation>
+    </message>
+    <message>
+        <source>Empty trash for documents older than</source>
+        <translation>Cancellare dal cestino i documenti di étà superiore a</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>giorni</translation>
     </message>
 </context>
 <context>

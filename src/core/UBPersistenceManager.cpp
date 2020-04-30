@@ -50,6 +50,11 @@
 #include "adaptors/UBThumbnailAdaptor.h"
 #include "adaptors/UBMetadataDcSubsetAdaptor.h"
 
+#include "domain/UBGraphicsMediaItem.h"
+#include "domain/UBGraphicsWidgetItem.h"
+#include "domain/UBGraphicsPixmapItem.h"
+#include "domain/UBGraphicsSvgItem.h"
+
 #include "board/UBBoardController.h"
 #include "board/UBBoardPaletteManager.h"
 
@@ -159,40 +164,40 @@ void UBPersistenceManager::createDocumentProxiesStructure(const QFileInfoList &c
     {
         QString fullPath = path.absoluteFilePath();
 
-        QDir dir(fullPath);
+        QMap<QString, QVariant> metadatas = UBMetadataDcSubsetAdaptor::load(fullPath);
 
-        if (dir.entryList(QDir::Files | QDir::NoDotAndDotDot).size() > 0)
-        {
-            QMap<QString, QVariant> metadatas = UBMetadataDcSubsetAdaptor::load(fullPath);
-            QString docGroupName = metadatas.value(UBSettings::documentGroupName, QString()).toString();
-            QString docName = metadatas.value(UBSettings::documentName, QString()).toString();
+        QString docGroupName = metadatas.value(UBSettings::documentGroupName, QString()).toString();
+        QString docName = metadatas.value(UBSettings::documentName, QString()).toString();
 
-            if (docName.isEmpty()) {
-                qDebug() << "Group name and document name are empty in UBPersistenceManager::createDocumentProxiesStructure()";
-                continue;
-            }
-
-            QModelIndex parentIndex = mDocumentTreeStructureModel->goTo(docGroupName);
-            if (!parentIndex.isValid()) {
-                return;
-            }
-
-            UBDocumentProxy* docProxy = new UBDocumentProxy(fullPath); // managed in UBDocumentTreeNode
-            foreach(QString key, metadatas.keys()) {
-                docProxy->setMetaData(key, metadatas.value(key));
-            }
-
-            docProxy->setPageCount(sceneCount(docProxy));
-            bool addDoc = false;
-            if (!interactive) {
-                addDoc = true;
-            } else if (processInteractiveReplacementDialog(docProxy) == QDialog::Accepted) {
-                addDoc = true;
-            }
-            if (addDoc) {
-                mDocumentTreeStructureModel->addDocument(docProxy, parentIndex);
-            }
+        if (docName.isEmpty()) {
+            qDebug() << "Group name and document name are empty in UBPersistenceManager::createDocumentProxiesStructure()";
+            continue;
         }
+
+        QModelIndex parentIndex = mDocumentTreeStructureModel->goTo(docGroupName);
+        if (!parentIndex.isValid()) {
+            return;
+        }
+
+        UBDocumentProxy* docProxy = new UBDocumentProxy(fullPath, metadatas); // managed in UBDocumentTreeNode
+        foreach(QString key, metadatas.keys()) {
+            docProxy->setMetaData(key, metadatas.value(key));
+        }
+
+        if (metadatas.contains(UBSettings::documentPageCount))
+        {
+            docProxy->setPageCount(metadatas.value(UBSettings::documentPageCount).toInt());
+        }
+        else
+        {
+            int pageCount = sceneCount(docProxy);
+            docProxy->setPageCount(pageCount);
+        }
+
+        if (!interactive)
+            mDocumentTreeStructureModel->addDocument(docProxy, parentIndex);
+        else
+            processInteractiveReplacementDialog(docProxy);
     }
 }
 
@@ -226,13 +231,20 @@ QDialog::DialogCode UBPersistenceManager::processInteractiveReplacementDialog(UB
                                                                                  , docList
                                                                                  , /*UBApplication::documentController->mainWidget()*/0
                                                                                  , Qt::Widget);
-            if (replaceDialog->exec() == QDialog::Accepted) {
+            if (replaceDialog->exec() == QDialog::Accepted)
+            {
                 result = QDialog::Accepted;
                 QString resultName = replaceDialog->lineEditText();
                 int i = docList.indexOf(resultName);
                 if (i != -1) { //replace
                     QModelIndex replaceIndex = mDocumentTreeStructureModel->index(i, 0, parentIndex);
                     UBDocumentProxy *replaceProxy = mDocumentTreeStructureModel->proxyData(replaceIndex);
+
+                    if (mDocumentTreeStructureModel->currentIndex() == replaceIndex)
+                    {
+                        UBApplication::documentController->selectDocument(pProxy, true, true);
+                    }
+
                     if (replaceProxy) {
                         deleteDocument(replaceProxy);
                     }
@@ -241,12 +253,15 @@ QDialog::DialogCode UBPersistenceManager::processInteractiveReplacementDialog(UB
                     }
                 }
                 pProxy->setMetaData(UBSettings::documentName, resultName);
+                mDocumentTreeStructureModel->addDocument(pProxy, parentIndex);
             }
             replaceDialog->setParent(0);
             delete replaceDialog;
         } else {
+            mDocumentTreeStructureModel->addDocument(pProxy, parentIndex);
             result = QDialog::Accepted;
         }
+
     }
     //TODO claudio the if is an hack
     if(UBApplication::overrideCursor())
@@ -441,11 +456,11 @@ UBDocumentProxy* UBPersistenceManager::createDocument(const QString& pGroupName
     bool addDoc = false;
     if (!promptDialogIfExists) {
         addDoc = true;
+        mDocumentTreeStructureModel->addDocument(doc);
     } else if (processInteractiveReplacementDialog(doc) == QDialog::Accepted) {
         addDoc = true;
     }
     if (addDoc) {
-        mDocumentTreeStructureModel->addDocument(doc);
         emit proxyListChanged();
     } else {
         deleteDocument(doc);
@@ -513,12 +528,12 @@ UBDocumentProxy* UBPersistenceManager::createDocumentFromDir(const QString& pDoc
     bool addDoc = false;
     if (!promptDialogIfExists) {
         addDoc = true;
+        mDocumentTreeStructureModel->addDocument(doc);
     } else if (processInteractiveReplacementDialog(doc) == QDialog::Accepted) {
         addDoc = true;
     }
     if (addDoc) {
         UBMetadataDcSubsetAdaptor::persist(doc);
-        mDocumentTreeStructureModel->addDocument(doc);
         emit proxyListChanged();
         emit documentCreated(doc);
     } else {
@@ -693,6 +708,77 @@ void UBPersistenceManager::duplicateDocumentScene(UBDocumentProxy* proxy, int in
     }
 
     copyPage(proxy, index , index + 1);
+
+    //TODO: write a proper way to handle object on disk
+    UBGraphicsScene *scene = loadDocumentScene(proxy, index + 1);
+
+    foreach(QGraphicsItem* item, scene->items())
+    {
+        UBGraphicsMediaItem *mediaItem = qgraphicsitem_cast<UBGraphicsMediaItem*> (item);
+
+        if (mediaItem){
+            QString source = mediaItem->mediaFileUrl().toLocalFile();
+            QString destination = source;
+            QUuid newUuid = QUuid::createUuid();
+            QString fileName = QFileInfo(source).completeBaseName();
+            destination = destination.replace(fileName,newUuid.toString());
+            QFile::copy(source,destination);
+            mediaItem->setMediaFileUrl(QUrl::fromLocalFile(destination));
+            continue;
+        }
+
+        UBGraphicsWidgetItem* widget = qgraphicsitem_cast<UBGraphicsWidgetItem*>(item);
+        if(widget){
+            QUuid newUUid = QUuid::createUuid();
+            QString newUUidString = newUUid.toString().remove("{").remove("}");
+            QString actualUuidString = widget->uuid().toString().remove("{").remove("}");
+
+            QString widgetSourcePath = proxy->persistencePath() + "/" + UBPersistenceManager::widgetDirectory + "/{" + actualUuidString + "}.wgt";
+            QString screenshotSourcePath = proxy->persistencePath() + "/" +  UBPersistenceManager::widgetDirectory + "/" + actualUuidString + ".png";
+
+            QString widgetDestinationPath = widgetSourcePath;
+            widgetDestinationPath = widgetDestinationPath.replace(actualUuidString,newUUidString);
+            QString screenshotDestinationPath = screenshotSourcePath;
+            screenshotDestinationPath = screenshotDestinationPath.replace(actualUuidString,newUUidString);
+
+            UBFileSystemUtils::copyDir(widgetSourcePath,widgetDestinationPath);
+            QFile::copy(screenshotSourcePath,screenshotDestinationPath);
+
+            widget->setUuid(newUUid);
+
+            widget->widgetUrl(QUrl::fromLocalFile(widgetDestinationPath));
+
+            continue;
+        }
+
+        UBGraphicsPixmapItem* pixmapItem = qgraphicsitem_cast<UBGraphicsPixmapItem*>(item);
+        if(pixmapItem){
+            QString source = proxy->persistencePath() + "/" +  UBPersistenceManager::imageDirectory + "/" + pixmapItem->uuid().toString() + ".png";
+            QString destination = source;
+            QUuid newUuid = QUuid::createUuid();
+            QString fileName = QFileInfo(source).completeBaseName();
+            destination = destination.replace(fileName,newUuid.toString());
+            QFile::copy(source,destination);
+            pixmapItem->setUuid(newUuid);
+            continue;
+        }
+
+        UBGraphicsSvgItem* svgItem = qgraphicsitem_cast<UBGraphicsSvgItem*>(item);
+        if(svgItem){
+            QString source = proxy->persistencePath() + "/" +  UBPersistenceManager::imageDirectory + "/" + svgItem->uuid().toString() + ".svg";
+            QString destination = source;
+            QUuid newUuid = QUuid::createUuid();
+            QString fileName = QFileInfo(source).completeBaseName();
+            destination = destination.replace(fileName,newUuid.toString());
+            QFile::copy(source,destination);
+            svgItem->setUuid(newUuid);
+            continue;
+        }
+
+    }
+    scene->setModified(true);
+
+    persistDocumentScene(proxy,scene, index + 1);
 
     proxy->incPageCount();
 

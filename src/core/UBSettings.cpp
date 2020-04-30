@@ -60,6 +60,7 @@ QString UBSettings::documentSize = QString("Size");
 QString UBSettings::documentIdentifer = QString("ID");
 QString UBSettings::documentVersion = QString("Version");
 QString UBSettings::documentUpdatedAt = QString("UpdatedAt");
+QString UBSettings::documentPageCount = QString("PageCount");
 QString UBSettings::documentDate = QString("date");
 
 QString UBSettings::trashedDocumentGroupNamePrefix = QString("_Trash:");
@@ -75,19 +76,19 @@ const char *UBSettings::sDefaultFontFamily = "Arial";
 QString UBSettings::currentFileVersion = "4.8.0";
 
 QBrush UBSettings::eraserBrushDarkBackground = QBrush(QColor(127, 127, 127, 80));
-QBrush UBSettings::eraserBrushLightBackground = QBrush(QColor(255, 255, 255, 30));
+QBrush UBSettings::eraserBrushLightBackground = QBrush(QColor(127, 127, 127, 80));
 
 QPen UBSettings::eraserPenDarkBackground = QPen(QColor(255, 255, 255, 127));
 QPen UBSettings::eraserPenLightBackground = QPen(QColor(0, 0, 0, 127));
 
 QColor UBSettings::markerCircleBrushColorDarkBackground = QColor(127, 127, 127, 80);
-QColor UBSettings::markerCircleBrushColorLightBackground = QColor(255, 255, 255, 30);
+QColor UBSettings::markerCircleBrushColorLightBackground = QColor(127, 127, 127, 80);
 
 QColor UBSettings::markerCirclePenColorDarkBackground = QColor(255, 255, 255, 127);
 QColor UBSettings::markerCirclePenColorLightBackground = QColor(0, 0, 0, 127);
 
 QColor UBSettings::penCircleBrushColorDarkBackground = QColor(127, 127, 127, 80);
-QColor UBSettings::penCircleBrushColorLightBackground = QColor(255, 255, 255, 30);
+QColor UBSettings::penCircleBrushColorLightBackground = QColor(127, 127, 127, 80);
 
 QColor UBSettings::penCirclePenColorDarkBackground = QColor(255, 255, 255, 127);
 QColor UBSettings::penCirclePenColorLightBackground = QColor(0, 0, 0, 127);
@@ -106,6 +107,8 @@ const int UBSettings::maxThumbnailWidth = 400;
 const int UBSettings::defaultThumbnailWidth = 150;
 const int UBSettings::defaultSortKind = 0;
 const int UBSettings::defaultSortOrder = 0;
+const int UBSettings::defaultSplitterLeftSize = 200;
+const int UBSettings::defaultSplitterRightSize = 800;
 
 const int UBSettings::defaultLibraryIconSize = 80;
 
@@ -428,9 +431,11 @@ void UBSettings::init()
     // removed in version 4.4.b.2
     mUserSettings->remove("Podcast/RecordMicrophone");
 
-    documentThumbnailWidth  = new UBSetting(this, "Document", "ThumbnailWidth", UBSettings::defaultThumbnailWidth);
-    documentSortKind        = new UBSetting(this, "Document", "SortKind", UBSettings::defaultSortKind);
-    documentSortOrder       = new UBSetting(this, "Document", "SortOrder", UBSettings::defaultSortOrder);
+    documentThumbnailWidth      = new UBSetting(this, "Document", "ThumbnailWidth", UBSettings::defaultThumbnailWidth);
+    documentSortKind            = new UBSetting(this, "Document", "SortKind", UBSettings::defaultSortKind);
+    documentSortOrder           = new UBSetting(this, "Document", "SortOrder", UBSettings::defaultSortOrder);
+    documentSplitterLeftSize    = new UBSetting(this, "Document", "SplitterLeftSize", UBSettings::defaultSplitterLeftSize);
+    documentSplitterRightSize   = new UBSetting(this, "Document", "SplitterRightSize", UBSettings::defaultSplitterRightSize);
 
     libraryShowDetailsForLocalItems = new UBSetting(this, "Library", "ShowDetailsForLocalItems", false);
 
@@ -453,6 +458,10 @@ void UBSettings::init()
     libIconSize = new UBSetting(this, "Library", "LibIconSize", defaultLibraryIconSize);
 
     useSystemOnScreenKeyboard = new UBSetting(this, "App", "UseSystemOnScreenKeyboard", true);
+
+    showDateColumnOnAlphabeticalSort = new UBSetting(this, "Document", "ShowDateColumnOnAlphabeticalSort", false);
+    emptyTrashForOlderDocuments = new UBSetting(this, "Document", "emptyTrashForOlderDocuments", false);
+    emptyTrashDaysValue = new UBSetting(this, "Document", "emptyTrashDaysValue", 30);
 
     cleanNonPersistentSettings();
     checkNewSettings();

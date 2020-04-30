@@ -1311,6 +1311,10 @@ Proporcionar un novo nome creará un novo documento.</translation>
         <source>Are you sure you want to remove the selected item(s) ?</source>
         <translation>¿Está seguro que desexa eliminar o/s elemento(s) seleccionado(s) ?</translation>
     </message>
+    <message>
+        <source>Copying page %1/%2</source>
+        <translation type="unfinished">Copiando páxina %1/%2</translation>
+    </message>
 </context>
 <context>
     <name>UBDocumentTreeWidget</name>
@@ -2816,6 +2820,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Swap first and second view displays</source>
         <translation>Intercambiar control de pantalla e vista de pantalla</translation>
+    </message>
+    <message>
+        <source>Documents Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display date column on alphabetical sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty trash for documents older than</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

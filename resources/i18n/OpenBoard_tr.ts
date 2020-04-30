@@ -1293,6 +1293,10 @@ Providing a new name will create a new document.</source>
         <source>Are you sure you want to remove the selected item(s) ?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copying page %1/%2</source>
+        <translation type="unfinished">Kopyalanan sayfa %1/%2</translation>
+    </message>
 </context>
 <context>
     <name>UBDocumentTreeWidget</name>
@@ -2813,6 +2817,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check if Open-Sankoré data could be imported at launch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Documents Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display date column on alphabetical sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty trash for documents older than</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>days</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
