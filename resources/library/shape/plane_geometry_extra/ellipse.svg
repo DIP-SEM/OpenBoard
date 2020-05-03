@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="110px"
+    height="56px">
+    <line  stroke="RED" x1="1" y1="28" x2="109" y2="28"/>
+    <line  stroke="RED" x1="55" y1="1" x2="55" y2="55"/>
+	<ellipse fill="none" stroke="BLACK" cx="55" cy="28" rx="54" ry="27"/>
+    <g fill="none" stroke="BLACK">
+    	<circle cx="55" cy="28" r=".25"/>
+	    <circle cx="8" cy="28" r=".25"/>
+	    <circle cx="102" cy="28" r=".25"/>
+    </g>
+    <g font-family="sans-serif" font-size="5px" fill="BLACK">
+        <text x="80" y="27" fill="RED">a</text>
+        <text x="56" y="14" fill="RED">b</text>
+        <text x="6" y="27">F1</text>
+        <text x="99" y="27">F2</text>
+    </g>
+</svg>
+
+

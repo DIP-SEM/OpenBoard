@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="82px"
+    height="111px">
+    <g fill="none" stroke="GREY" stroke-linecap="round" stroke-dasharray="3,3">
+        <line x1="81" y1="110" x2="65" y2="86"/>
+        <line x1="1" y1="110" x2="65" y2="86"/>
+        <line x1="65" y1="86" x2="56" y2="1"/>
+    </g>
+    <g fill="none" stroke="BLACK" stroke-linecap="round">
+        <line x1="1" y1="110" x2="81" y2="110"/>
+        <line x1="1" y1="110" x2="56" y2="1"/>
+        <line x1="81" y1="110" x2="56" y2="1"/>
+    </g>
+</svg>

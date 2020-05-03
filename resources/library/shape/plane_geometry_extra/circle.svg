@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="102px"
+    height="102px">
+    <line  stroke="RED" x1="51" y1="51" x2="101" y2="51"/>
+	<circle fill="none" stroke="BLACK" cx="51" cy="51" r="50"/>
+    <circle fill="none" stroke="BLACK" cx="51" cy="51" r=".25"/>
+    <text x="73" y="50" fill="RED" font-family="Arial" font-size="5px">r</text>
+</svg>
+

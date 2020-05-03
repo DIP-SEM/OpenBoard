@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="110px"
+    height="110px">
+    <g stroke="GREY">
+        <line id="d1" x1="33.31" y1="101.05" x2="55" y2="56"/>
+        <line id="d2" x1="76.69" y1="101.05" x2="55" y2="56"/>
+        <line id="d3" x1="103.75" y1="67.13" x2="55" y2="56"/>
+        <line id="d4" x1="94.09" y1="24.83" x2="55" y2="56"/>
+        <line id="d5" x1="55" y1="6" x2="55" y2="56"/>
+        <line id="d6" x1="15.91" y1="24.83" x2="55" y2="56"/>
+        <line id="d7" x1="6.25" y1="67.13" x2="55" y2="56"/>
+    </g>
+    <line id="apothem" stroke="BLUE" stroke-dasharray="3,1" x1="55" y1="56" x2="55" y2="101.05"/>
+	<polygon fill="none" stroke="BLACK" points="33.31,101.05 76.69,101.05 103.75,67.13 94.09,24.83 55,6 15.91,24.83 6.25,67.13"/>
+    <g font-family="sans-serif" font-size="5px" fill="BLACK">
+        <text x="32" y="106">A</text>
+        <text x="76" y="106">B</text>
+        <text x="105" y="69">C</text>
+        <text x="95" y="26">D</text>
+        <text x="54" y="5">E</text>
+        <text x="12" y="26">F</text>
+        <text x="1" y="69">G</text>
+        <text x="56" y="70" fill="BLUE">a</text>
+    </g>
+</svg>

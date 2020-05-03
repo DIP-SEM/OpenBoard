@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="136px"
+    height="125px">
+    <line id="height" stroke="RED" stroke-dasharray="4,2" x1="68" y1="119" x2="68" y2="6"/>
+	<polygon fill="none" stroke="BLACK" points="133,119 3,119 68,6"/>
+    <g font-family="sans-serif" font-size="5px" fill="BLACK">
+        <text x="1" y="124">A</text>
+        <text x="132" y="124">B</text>
+        <text x="66" y="4">C</text>
+        <text x="70" y="69" fill="RED">h</text>
+    </g>
+</svg>

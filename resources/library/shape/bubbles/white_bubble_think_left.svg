@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="155px"
+    height="138px">
+    <g>
+		<rect opacity="0.25" x="7" y="6" rx="7" ry="7" width="143" height="100"/>
+        <circle opacity="0.25" cx="63" cy="117" r="7.5"/>
+        <circle opacity="0.25" cx="69" cy="132" r="4.5"/>
+		<rect fill="#FFFFFF" stroke="#000000" x="4" y="4" rx="7" ry="7" width="143" height="100"/>
+        <circle fill="#FFFFFF" stroke="#000000" cx="60" cy="115" r="7.5"/>
+        <circle fill="#FFFFFF" stroke="#000000" cx="66" cy="130" r="4.5"/>
+	</g>
+</svg>
+

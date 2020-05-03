@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="158px"
+    height="115px">
+    <g>
+		<linearGradient id="GRA_GREEN" gradientUnits="userSpaceOnUse" x1="2" y1="57" x2="155" y2="57">
+			<stop  offset="0" style="stop-color:#89FF89"/>
+			<stop  offset="1" style="stop-color:#00A000"/>
+		</linearGradient>
+		<rect opacity="0.25" x="5" y="5" width="150" height="108"/>
+		<rect fill="url(#GRA_GREEN)" stroke="#004100" x="2" y="2" width="150" height="108"/>
+	</g>
+</svg>
