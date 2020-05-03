@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="102px"
+    height="82px">
+    <g fill="none" stroke="GREY" stroke-linecap="round" stroke-dasharray="3,3">
+        <line x1="21" y1="61" x2="101" y2="61"/>
+        <line x1="1" y1="81" x2="21" y2="61"/>
+        <line x1="21" y1="1" x2="21" y2="61"/>
+    </g>
+    <g fill="none" stroke="BLACK" stroke-linecap="round">
+    	<rect x="1" y="21" width="80" height="60"/>
+        <line x1="1" y1="21" x2="21" y2="1"/>
+        <line x1="81" y1="21" x2="101" y2="1"/>
+        <line x1="21" y1="1" x2="101" y2="1"/>
+        <line x1="101" y1="1" x2="101" y2="61"/>
+        <line x1="81" y1="81" x2="101" y2="61"/>
+    </g>
+</svg>

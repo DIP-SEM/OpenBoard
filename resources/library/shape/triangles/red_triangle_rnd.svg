@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="140px"
+    height="123px">
+    <g>
+        <linearGradient id="GRA_RED" gradientUnits="userSpaceOnUse" x1="3" y1="60" x2="140" y2="60">
+			<stop  offset="0" style="stop-color:#FF897A"/>
+			<stop  offset="1" style="stop-color:#FF3400"/>
+		</linearGradient>
+		<path opacity="0.25" d="M71.427,120.692l-58.237-0.001c-6.572-0.001-9.401-4.899-6.115-10.592
+			l29.118-50.437l29.12-50.435c3.286-5.692,8.944-5.692,12.23,0l29.12,50.435l29.117,50.437c3.287,5.692,0.457,10.591-6.114,10.592
+			L71.427,120.692z"/>
+        <path fill="url(#GRA_RED)" stroke="#6F0000" d="M67.836,118.3l-58.237-0.002
+			c-6.572,0-9.401-4.898-6.115-10.592l29.118-50.436l29.12-50.435c3.286-5.692,8.944-5.692,12.23,0l29.12,50.435l29.117,50.436
+			c3.287,5.693,0.457,10.592-6.114,10.592L67.836,118.3z"/>
+	</g>
+</svg>

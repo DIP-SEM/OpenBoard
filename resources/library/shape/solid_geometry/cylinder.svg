@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="102px"
+    height="102px">
+    <g fill="none" stroke="BLACK" stroke-linecap="round">
+    	<ellipse cx="51" cy="21" rx="50" ry="10"/>
+        <path d="M101,81a50,10 0 1,0 -100,0" stroke="GREY" stroke-dasharray="3,3"/>
+        <path d="M1,81a50,10 0 1,0 100,0"/>
+        <line x1="1" y1="21" x2="1" y2="81"/>
+        <line x1="101" y1="21" x2="101" y2="81"/>
+    </g>
+</svg>
+

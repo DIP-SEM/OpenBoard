@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="103px"
+    height="103px">
+    <g stroke="GREY">
+        <line id="d1" x1="32.06" y1="97.38" x2="70.32" y2="5"/>
+        <line id="d2" x1="70.32" y1="97.38" x2="32.06" y2="5"/>
+        <line id="d3" x1="97.38" y1="70.32" x2="5" y2="32.06"/>
+        <line id="d4" x1="97.38" y1="32.06" x2="5" y2="70.32"/>
+    </g>
+    <line id="apothem" stroke="BLUE" stroke-dasharray="3,1" x1="51.19" y1="51.19" x2="51.19" y2="97"/>
+	<polygon fill="none" stroke="BLACK" points="32.06,97.38 70.32,97.38 97.38,70.32 97.38,32.06 70.32,5 32.06,5 5,32.06 5,70.32"/>
+    <g font-family="sans-serif" font-size="5px" fill="BLACK">
+        <text x="30" y="102">A</text>
+        <text x="69" y="102">B</text>
+        <text x="98" y="72">C</text>
+        <text x="98" y="34">D</text>
+        <text x="69" y="4">E</text>
+        <text x="30" y="4">F</text>
+        <text x="0" y="34">G</text>
+        <text x="0" y="72">H</text>
+        <text x="52" y="80" fill="BLUE">a</text>
+    </g>
+</svg>
+
+
+
+
+
+

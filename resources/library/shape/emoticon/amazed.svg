@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="120px"
+    height="120px">
+	<circle fill="YELLOW" stroke="BLACK" stroke-width="3" cx="60" cy="60" r="58"/>
+	<circle fill="WHITE" stroke="BLACK" stroke-width="1" cx="35" cy="40" r="15"/>
+	<circle fill="WHITE" stroke="BLACK" stroke-width="1" cx="85" cy="40" r="15"/>
+	<circle fill="BLACK" cx="37" cy="43" r="5"/>
+	<circle fill="BLACK" cx="82" cy="43" r="5"/>
+	<circle fill="BLACK" cx="60" cy="85" r="15"/>
+</svg>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="125px"
+    height="105px">
+    <g stroke="GREY">
+        <line id="d1" x1="3" y1="5" x2="121" y2="98"/>
+        <line id="d2" x1="121" y1="5" x2="3" y2="98"/>
+    </g>
+	<rect fill="none" stroke="BLACK" x="3" y="5" width="118" height="93"/>
+    <line id="height" stroke="RED" stroke-dasharray="4,2" x1="3" y1="5" x2="3" y2="98"/>
+    <g font-family="sans-serif" font-size="5px" fill="BLACK">
+        <text x="1" y="103">A</text>
+        <text x="120" y="103">B</text>
+        <text x="120" y="4">C</text>
+        <text x="1" y="4">D</text>
+        <text x="5" y="53" fill="RED">h</text>
+    </g>
+</svg>

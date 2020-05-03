@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 249 273"
+    width="115px"
+    height="125px"
+  >
+  <g
+      id="imagebot_2"
+      stroke-linejoin="round"
+      stroke="#1c4d1d"
+      stroke-linecap="round"
+      stroke-width="10"
+      fill="#3c9a50"
+    >
+    <path
+        id="imagebot_7"
+        stroke-linejoin="round"
+        d="m30.222 125.92c8.309-4.31 22.812 1.73 33-2.5 18.498-7.69 41.258-35.569 49.618-42.473 15.01-12.39 28.86-17.61 37.38-34.03 4.37-8.423 10.03-28.923 19-38 2-2.026 6.68-3.917 9.5-3.5 7.06 1.045 11.16 5.839 15.5 11.5 3.73 4.863 6.37 10.883 6 17-1.32 21.75-24.62 36.167-31 57-2.35 7.675-6.69 17.483-2 24.003 5.94 8.23 33.12 6.5 48 14 9.35 4.71 20.35 9.62 25 19 3.7 7.46 3.19 17.3 0 25-2.53 6.09-8.78 7.78-11 14-2.25 6.31 1.83 13.92-1 20-3.24 6.96-13.62 9.7-18 16-3.14 4.51-1.49 8.77-5 13-5.62 6.77-13.76 5.8-20 12-3.92 3.88-6.74 10.49-11 14-6.36 5.24-15.76 6.13-24 6-9.7-0.16-15.33-4.19-25-5-9.02-0.76-21.35 2.68-30 0-21.446-6.65-31.758-30.29-51-44-7.453-5.32-20.253 1.18-27-5-11.981-10.99-12.22-29.9-10-46 2.287-16.6 8.126-34.3 23-42h0.002z"
+        stroke="#333333"
+        stroke-linecap="round"
+        stroke-width="10"
+        fill="LIGHTPINK"
+    />
+    <path
+        id="imagebot_6"
+        stroke-linejoin="round"
+        d="m472 517.86s-28.51 6.77-40.5 2.5c-15.51-5.52-23.74-12.78-39.5-20.5-3.15-1.54-5.46-7.6-3.5-10.5 5.13-7.6 16.86-11.69 26-12.5 11.84-1.04 24.62 7.52 33.5 10 2.77 0.77 9.5-1.5 9.5-1.5"
+        transform="translate(1.142 0.357) matrix(1 0 0 1 -247.92 -330.8)"
+        stroke="#333333"
+        stroke-linecap="round"
+        stroke-width="10"
+        fill="LIGHTPINK"
+    />
+    <path
+        id="imagebot_5"
+        stroke-linejoin="round"
+        d="m454 551.36c0-0.35-23.77 1.13-38-3.5-12.96-4.21-20.47-11.1-43.5-21-9.72-4.18-3.45-8.13-2-11.5 3.09-7.14 18-16.5 18-16.5"
+        transform="translate(1.142 0.357) matrix(1 0 0 1 -247.92 -330.8)"
+        stroke="#333333"
+        stroke-linecap="round"
+        stroke-width="10"
+        fill="LIGHTPINK"
+    />
+    <path
+        id="imagebot_4"
+        stroke-linejoin="round"
+        d="m431 577.36s-19.98-0.47-28.5-5c-12.91-6.86-28.26-12.86-41-19.5-3.6-1.88-3.16-8.11-2-12 1.69-5.65 12-13 12-13"
+        transform="translate(1.142 0.357) matrix(1 0 0 1 -247.92 -330.8)"
+        stroke="#333333"
+        stroke-linecap="round"
+        stroke-width="10"
+        fill="LIGHTPINK"
+    />
+    <path
+        id="imagebot_3"
+        stroke-linejoin="round"
+        d="m396.36 597.86s-34.17-11-43.86-20c-2.6-2.4-0.62-9.15 0.5-12.5 1.78-5.37 10-10 10-10"
+        transform="translate(1.142 0.357) matrix(1 0 0 1 -247.92 -330.8)"
+        stroke="#333333"
+        stroke-linecap="round"
+        stroke-width="10"
+        fill="LIGHTPINK"
+    />
+    <title
+      >Thumb-up</title
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>
