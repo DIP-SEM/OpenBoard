@@ -81,12 +81,12 @@ UBPreferencesController::UBPreferencesController(QWidget *parent)
     , mDarkBackgroundGridColorPicker(0)
     , mLightBackgroundGridColorPicker(0)
 {
-    mDesktop = qApp->desktop();
     mPreferencesWindow = new UBPreferencesDialog(this,parent, Qt::Dialog);
     mPreferencesUI = new Ui::preferencesDialog();  // deleted in
     mPreferencesUI->setupUi(mPreferencesWindow);
-    adjustScreens(1);
-    connect(mDesktop, &QDesktopWidget::screenCountChanged, this, &UBPreferencesController::adjustScreens);
+    adjustScreens(nullptr);
+    connect(qApp, &QGuiApplication::screenAdded, this, &UBPreferencesController::adjustScreens);
+    connect(qApp, &QGuiApplication::screenRemoved, this, &UBPreferencesController::adjustScreens);
 
     wire();
 }
@@ -103,7 +103,7 @@ UBPreferencesController::~UBPreferencesController()
     delete mMarkerProperties;
 }
 
-void UBPreferencesController::adjustScreens(int screen)
+void UBPreferencesController::adjustScreens(QScreen *screen)
 {
     Q_UNUSED(screen);
     UBDisplayManager displayManager;

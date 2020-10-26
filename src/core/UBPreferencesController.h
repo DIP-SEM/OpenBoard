@@ -52,7 +52,7 @@ class UBPreferencesDialog : public QDialog
     Q_OBJECT;
 
 public:
-    UBPreferencesDialog(UBPreferencesController* prefController, QWidget* parent = 0,Qt::WindowFlags f = 0 );
+    UBPreferencesDialog(UBPreferencesController* prefController, QWidget* parent = 0, Qt::WindowFlags f = {} );
     ~UBPreferencesDialog();
 
 protected:
@@ -104,14 +104,12 @@ class UBPreferencesController : public QObject
         void systemOSKCheckBoxToggled(bool checked);
 
     private slots:
-        void adjustScreens(int screen);
+        void adjustScreens(QScreen *screen);
 
     private:
         static qreal sSliderRatio;
         static qreal sMinPenWidth;
         static qreal sMaxPenWidth;
-        QDesktopWidget* mDesktop;
-
 };
 
 class UBBrushPropertiesFrame : public Ui::brushProperties

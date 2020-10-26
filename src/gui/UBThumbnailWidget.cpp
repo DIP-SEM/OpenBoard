@@ -196,10 +196,10 @@ void UBThumbnailWidget::refreshScene()
             QString elidedText = fm.elidedText(mLabels.at(i), Qt::ElideRight, mThumbnailWidth);
 
             mLabelsItems.at(i)->setPlainText(elidedText);
-            mLabelsItems.at(i)->setWidth(fm.width(elidedText) + 2 * mLabelsItems.at(i)->document()->documentMargin());
+            mLabelsItems.at(i)->setWidth(fm.horizontalAdvance(elidedText) + 2 * mLabelsItems.at(i)->document()->documentMargin());
 
             pos.setY(pos.y() + (thumbnailHeight + h * scaleFactor) / 2 + 5);
-            qreal labelWidth = fm.width(elidedText);
+            qreal labelWidth = fm.horizontalAdvance(elidedText);
             pos.setX(mSpacing + (mThumbnailWidth - labelWidth) / 2 + columnIndex * (mThumbnailWidth + mSpacing));
             mLabelsItems.at(i)->setPos(pos);
         }
@@ -226,7 +226,7 @@ QList<QGraphicsItem*> UBThumbnailWidget::selectedItems()
 
 void UBThumbnailWidget::mousePressEvent(QMouseEvent *event)
 {
-    mClickTime = QTime::currentTime();
+    mClickTime.restart();
     mMousePressPos = event->pos();
 
     UBThumbnailPixmap* sceneItem = dynamic_cast<UBThumbnailPixmap*>(itemAt(mMousePressPos));
@@ -296,7 +296,8 @@ void UBThumbnailWidget::mousePressEvent(QMouseEvent *event)
                 int index2 = mGraphicItems.indexOf(underlyingItem);
                 if (-1 == index2)
                 {
-                    mSelectedThumbnailItems = selectedItems().toSet();
+                    const auto items = selectedItems();
+                    mSelectedThumbnailItems = QSet<QGraphicsItem *>(items.begin(), items.end());
                     return;
                 }
                 mSelectionSpan = index2 - index1;
@@ -358,8 +359,9 @@ void UBThumbnailWidget::mouseMoveEvent(QMouseEvent *event)
         QSet<QGraphicsItem*> toSet;
 
         // for horizontal moving
-        QSet<QGraphicsItem*> incSelectedItemsX = scene()->items(incrementXSelection, Qt::IntersectsItemBoundingRect).toSet();
-        foreach (QGraphicsItem *lassoSelectedItem, incSelectedItemsX)
+        const auto selectedItemsX = scene()->items(incrementXSelection, Qt::IntersectsItemBoundingRect);
+        const auto incSelectedItemsX = QSet<QGraphicsItem *>(selectedItemsX.begin(), selectedItemsX.end());
+        for (QGraphicsItem *lassoSelectedItem : incSelectedItemsX)
         {
             if (lassoSelectedItem)
             {
@@ -384,8 +386,9 @@ void UBThumbnailWidget::mouseMoveEvent(QMouseEvent *event)
 
         // for vertical moving
 
-        QSet<QGraphicsItem*> incSelectedItemsY = scene()->items(incrementYSelection, Qt::IntersectsItemBoundingRect).toSet();
-        foreach (QGraphicsItem *lassoSelectedItem, incSelectedItemsY)
+        const auto selectedItemsY = scene()->items(incrementYSelection, Qt::IntersectsItemBoundingRect);
+        const auto incSelectedItemsY = QSet<QGraphicsItem *>(selectedItemsY.begin(), selectedItemsY.end());
+        for (QGraphicsItem *lassoSelectedItem : incSelectedItemsY)
         {
             if (lassoSelectedItem)
             {
@@ -927,9 +930,9 @@ void UBImgTextThumbnailElement::Place(int row, int col, qreal width, qreal heigh
             QString elidedText = fm.elidedText(this->caption->toPlainText(), Qt::ElideRight, width);
 
             this->caption->setPlainText(elidedText);
-            this->caption->setWidth(fm.width(elidedText) + 2 * this->caption->document()->documentMargin());
+            this->caption->setWidth(fm.horizontalAdvance(elidedText) + 2 * this->caption->document()->documentMargin());
             pos.setY(pos.y() + (height + h * scaleFactor) / 2 + 5); // What is this 5 ??
-            qreal labelWidth = fm.width(elidedText);
+            qreal labelWidth = fm.horizontalAdvance(elidedText);
             pos.setX((width - labelWidth) / 2 + col * (width + border));
             this->caption->setPos(pos);
         }
@@ -1068,7 +1071,7 @@ void UBDraggableThumbnail::updatePos(qreal width, qreal height)
     setPos(position);
 
     position.setY(position.y() + (height + h * scaledFactor) / 2);
-    position.setX(position.x() + (w * scaledFactor - fm.width(mPageNumber->toPlainText())) / 2);
+    position.setX(position.x() + (w * scaledFactor - fm.horizontalAdvance(mPageNumber->toPlainText())) / 2);
 
     mPageNumber->setPos(position);
 }
@@ -1098,7 +1101,7 @@ void UBDraggableThumbnailPixmap::updatePos(qreal width, qreal height)
     thumbnailPixmap()->setPos(position);
 
     position.setY(position.y() + (height + h * scaledFactor) / 2);
-    position.setX(position.x() + (w * scaledFactor - fm.width(mPageNumber->toPlainText())) / 2);
+    position.setX(position.x() + (w * scaledFactor - fm.horizontalAdvance(mPageNumber->toPlainText())) / 2);
 
     mPageNumber->setPos(position);
 }

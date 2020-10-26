@@ -203,7 +203,7 @@ void UBPodcastController::setSourceWidget(QWidget* pWidget)
             QSizeF sourceWidgetSize(mSourceWidget->size());
 
             if (mSourceWidget == qApp->desktop())
-                sourceWidgetSize = qApp->desktop()->availableGeometry(UBApplication::applicationController->displayManager()->controleScreenIndex()).size();
+                sourceWidgetSize = QGuiApplication::screens().at(UBApplication::applicationController->displayManager()->controleScreenIndex())->size();
 
             QSizeF videoFrameSize(mVideoFrameSizeAtStart);
 
@@ -768,11 +768,10 @@ void UBPodcastController::timerEvent(QTimerEvent *event)
             && event->timerId() == mScreenGrabingTimerEventID
             && mSourceWidget == qApp->desktop())
     {
-        QDesktopWidget * dtop = QApplication::desktop();
-        QRect dtopRect = dtop->screenGeometry(UBApplication::controlScreenIndex());
+        QRect dtopRect = QGuiApplication::screens().at(UBApplication::controlScreenIndex())->geometry();
         QScreen * screen = UBApplication::controlScreen();
 
-        QPixmap desktop = screen->grabWindow(dtop->effectiveWinId(),
+        QPixmap desktop = screen->grabWindow(qApp->desktop()->effectiveWinId(),
                                              dtopRect.x(), dtopRect.y(), dtopRect.width(), dtopRect.height());
 
         {
