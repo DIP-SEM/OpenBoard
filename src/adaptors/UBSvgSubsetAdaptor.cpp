@@ -122,11 +122,13 @@ QTransform UBSvgSubsetAdaptor::fromSvgTransform(const QString& transform)
         matrix.setMatrix(
                     sl.at(0).toFloat(),
                     sl.at(1).toFloat(),
+                    0,
                     sl.at(2).toFloat(),
                     sl.at(3).toFloat(),
+                    0,
                     sl.at(4).toFloat(),
                     sl.at(5).toFloat(),
-                    0, 0, 0);
+                    1);
     }
 
     return matrix;
