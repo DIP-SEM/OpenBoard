@@ -2709,6 +2709,22 @@ void UBGraphicsScene::drawBackground(QPainter *painter, const QRectF &rect)
             {
                 painter->drawLine (xPos, rect.y (), xPos, rect.y () + rect.height ());
             }
+
+            if (mIntermediateLines) {
+                QColor intermediateColor = bgCrossColor;
+                intermediateColor.setAlphaF(0.5 * bgCrossColor.alphaF());
+                painter->setPen(intermediateColor);
+
+                for (qreal yPos = firstY - backgroundGridSize()/2; yPos < rect.y () + rect.height (); yPos += backgroundGridSize())
+                {
+                    painter->drawLine (rect.x (), yPos, rect.x () + rect.width (), yPos);
+                }
+
+                for (qreal xPos = firstX - backgroundGridSize()/2; xPos < rect.x () + rect.width (); xPos += backgroundGridSize())
+                {
+                    painter->drawLine (xPos, rect.y (), xPos, rect.y () + rect.height ());
+                }
+            }
         }
 
         else if (mPageBackground == UBPageBackground::ruled)
@@ -2718,6 +2734,17 @@ void UBGraphicsScene::drawBackground(QPainter *painter, const QRectF &rect)
             for (qreal yPos = firstY; yPos < rect.y () + rect.height (); yPos += backgroundGridSize())
             {
                 painter->drawLine (rect.x (), yPos, rect.x () + rect.width (), yPos);
+            }
+
+            if (mIntermediateLines) {
+                QColor intermediateColor = bgCrossColor;
+                intermediateColor.setAlphaF(0.5 * bgCrossColor.alphaF());
+                painter->setPen(intermediateColor);
+
+                for (qreal yPos = firstY - backgroundGridSize()/2; yPos < rect.y () + rect.height (); yPos += backgroundGridSize())
+                {
+                    painter->drawLine (rect.x (), yPos, rect.x () + rect.width (), yPos);
+                }
             }
         }
     }
