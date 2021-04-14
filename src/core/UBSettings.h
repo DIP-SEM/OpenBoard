@@ -363,6 +363,8 @@ class UBSettings : public QObject
 
         UBSetting* pdfZoomBehavior;
         UBSetting* enableQualityLossToIncreaseZoomPerfs;
+        UBSetting* exportBackgroundGrid;
+        UBSetting* exportBackgroundColor;
 
         UBSetting* podcastFramesPerSecond;
         UBSetting* podcastVideoSize;
