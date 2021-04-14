@@ -453,7 +453,7 @@ void UBApplicationController::showDocument()
 
 void UBApplicationController::showDesktop(bool dontSwitchFrontProcess)
 {
-    int desktopWidgetIndex = qApp->desktop()->screenNumber(mMainWindow);
+    const QScreen *mainWindowScreen = QGuiApplication::screenAt(mMainWindow->pos());
 
     if (UBApplication::boardController)
         UBApplication::boardController->hide();
@@ -463,7 +463,7 @@ void UBApplicationController::showDesktop(bool dontSwitchFrontProcess)
 
     if (mMirror)
     {
-        QRect rect = qApp->desktop()->screenGeometry(desktopWidgetIndex);
+        QRect rect = mainWindowScreen->geometry();
         mMirror->setSourceRect(rect);
     }
 
@@ -752,7 +752,7 @@ QStringList UBApplicationController::widgetInlineJavaScripts()
         }
     }
 
-    qSort(scripts);
+    std::sort(scripts.begin(), scripts.end());
 
     return scripts;
 }

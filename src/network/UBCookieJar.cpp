@@ -158,9 +158,9 @@ void UBCookieJar::load()
     mExceptionsBlock = cookieSettings.value(QLatin1String("block")).toStringList();
     mExceptionsAllow = cookieSettings.value(QLatin1String("allow")).toStringList();
     mExceptionsAllowForSession = cookieSettings.value(QLatin1String("allowForSession")).toStringList();
-    qSort(mExceptionsBlock.begin(), mExceptionsBlock.end());
-    qSort(mExceptionsAllow.begin(), mExceptionsAllow.end());
-    qSort(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end());
+    std::sort(mExceptionsBlock.begin(), mExceptionsBlock.end());
+    std::sort(mExceptionsAllow.begin(), mExceptionsAllow.end());
+    std::sort(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end());
 
     loadSettings();
 }
@@ -265,9 +265,9 @@ bool UBCookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, con
         return false;
 
     QString host = url.host();
-    bool eBlock = qBinaryFind(mExceptionsBlock.begin(), mExceptionsBlock.end(), host) != mExceptionsBlock.end();
-    bool eAllow = qBinaryFind(mExceptionsAllow.begin(), mExceptionsAllow.end(), host) != mExceptionsAllow.end();
-    bool eAllowSession = qBinaryFind(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end(), host) != mExceptionsAllowForSession.end();
+    bool eBlock = std::lower_bound(mExceptionsBlock.begin(), mExceptionsBlock.end(), host) != mExceptionsBlock.end();
+    bool eAllow = std::lower_bound(mExceptionsAllow.begin(), mExceptionsAllow.end(), host) != mExceptionsAllow.end();
+    bool eAllowSession = std::lower_bound(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end(), host) != mExceptionsAllowForSession.end();
 
     bool addedCookies = false;
     // pass exceptions
@@ -370,7 +370,7 @@ void UBCookieJar::setBlockedCookies(const QStringList &list)
     if (!mLoaded)
         load();
     mExceptionsBlock = list;
-    qSort(mExceptionsBlock.begin(), mExceptionsBlock.end());
+    std::sort(mExceptionsBlock.begin(), mExceptionsBlock.end());
     mSaveTimer->changeOccurred();
 }
 
@@ -379,7 +379,7 @@ void UBCookieJar::setAllowedCookies(const QStringList &list)
     if (!mLoaded)
         load();
     mExceptionsAllow = list;
-    qSort(mExceptionsAllow.begin(), mExceptionsAllow.end());
+    std::sort(mExceptionsAllow.begin(), mExceptionsAllow.end());
     mSaveTimer->changeOccurred();
 }
 
@@ -388,7 +388,7 @@ void UBCookieJar::setAllowForSessionCookies(const QStringList &list)
     if (!mLoaded)
         load();
     mExceptionsAllowForSession = list;
-    qSort(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end());
+    std::sort(mExceptionsAllowForSession.begin(), mExceptionsAllowForSession.end());
     mSaveTimer->changeOccurred();
 }
 

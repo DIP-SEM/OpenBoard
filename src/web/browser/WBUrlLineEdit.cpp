@@ -138,7 +138,7 @@ void WBExLineEdit::resizeEvent(QResizeEvent *event)
 
 void WBExLineEdit::updateGeometries()
 {
-    QStyleOptionFrameV2 panel;
+    QStyleOptionFrame panel;
     initStyleOption(&panel);
 
     QRect rect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
@@ -155,7 +155,7 @@ void WBExLineEdit::updateGeometries()
 
 }
 
-void WBExLineEdit::initStyleOption(QStyleOptionFrameV2 *option) const
+void WBExLineEdit::initStyleOption(QStyleOptionFrame *option) const
 {
     option->initFrom(this);
     option->rect = contentsRect();
@@ -168,7 +168,7 @@ void WBExLineEdit::initStyleOption(QStyleOptionFrameV2 *option) const
     if (hasEditFocus())
         option->state |= QStyle::State_HasEditFocus;
 #endif
-    option->features = QStyleOptionFrameV2::None;
+    option->features = QStyleOptionFrame::None;
 }
 
 QSize WBExLineEdit::sizeHint() const
