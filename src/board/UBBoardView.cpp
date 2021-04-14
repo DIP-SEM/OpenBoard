@@ -124,6 +124,7 @@ UBBoardView::UBBoardView (UBBoardController* pController, int pStartLayer, int p
     , _movingItem(nullptr)
     , bIsControl(isControl)
     , bIsDesktop(isDesktop)
+    , tabletDeviceActive(false)
 {
     init ();
 
@@ -336,6 +337,12 @@ bool UBBoardView::event (QEvent * e)
         }
     }
 
+    if (e->type() == QEvent::TabletEnterProximity || e->type() == QEvent::TabletLeaveProximity) {
+               bool active = e->type() == QEvent::TabletEnterProximity? 1:0;
+               tabletDeviceActive = active;
+               return true;
+           }
+
     return QGraphicsView::event (e);
 }
 
@@ -370,11 +377,13 @@ void UBBoardView::tabletEvent (QTabletEvent * event)
     if (((currentTool == UBStylusTool::Pen || currentTool == UBStylusTool::Line) && mPenPressureSensitive) ||
             (currentTool == UBStylusTool::Marker && mMarkerPressureSensitive))
         pressure = event->pressure ();
-    else{
-        //Explanation: rerouting to mouse event
-        event->setAccepted (false);
-        return;
-    }
+
+//    Mouse event does not handle tablet events anymore
+//    else{
+//        //Explanation: rerouting to mouse event
+//        event->setAccepted (false);
+//        return;
+//    }
 
     bool acceptEvent = true;
 #ifdef Q_OS_OSX
@@ -1086,7 +1095,7 @@ void UBBoardView::mousePressEvent (QMouseEvent *event)
             if(UBDrawingController::drawingController()->mActiveRuler==NULL) {
                 viewport()->setCursor (QCursor (Qt::BlankCursor));
             }
-            if (scene () && !mTabletStylusIsPressed) {
+            if (scene () && !mTabletStylusIsPressed && !tabletDeviceActive) {
                 if (currentTool == UBStylusTool::Eraser) {
                     connect(&mLongPressTimer, SIGNAL(timeout()), this, SLOT(longPressEvent()));
                     mLongPressTimer.start();
@@ -1222,7 +1231,7 @@ void UBBoardView::mouseMoveEvent (QMouseEvent *event)
     } break;
 
     default:
-        if (!mTabletStylusIsPressed && scene()) {
+        if (!mTabletStylusIsPressed && !tabletDeviceActive && scene()) {
             scene()->inputDeviceMove(mapToScene(UBGeometryUtils::pointConstrainedInRect(event->pos(), rect())) , mMouseButtonIsPressed);
         }
         event->accept ();
