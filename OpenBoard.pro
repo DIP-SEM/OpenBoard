@@ -90,6 +90,11 @@ ALPHA_BETA_STR = $$find(VERSION, "[ab]")
 count(ALPHA_BETA_STR, 1):DEFINES += PRE_RELEASE
 BUILD_DIR = build
 
+OB_INAWINDOW = $$(OB_INAWINDOW)
+!isEmpty(OB_INAWINDOW) {
+	DEFINES += OB_INAWINDOW
+}
+
 macx:BUILD_DIR = $$BUILD_DIR/macx
 win32:BUILD_DIR = $$BUILD_DIR/win32
 linux-g++*:BUILD_DIR = $$BUILD_DIR/linux
@@ -459,6 +464,8 @@ linux-g++* {
     QMAKE_CFLAGS += -fopenmp
     QMAKE_CXXFLAGS += -fopenmp
     QMAKE_LFLAGS += -fopenmp
+	# Necessary for CentOS/RHEL and won't harm in other distributions
+    INCLUDEPATH += /usr/include/ffmpeg
     UB_LIBRARY.path = $$DESTDIR
     UB_I18N.path = $$DESTDIR/i18n
     UB_ETC.path = $$DESTDIR
